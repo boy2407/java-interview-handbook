@@ -1,0 +1,19 @@
+{
+  "name": "java-interview-handbook",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cẩm nang phỏng vấn Java Backend — từ nền tảng Fresher đến 2–4 năm kinh nghiệm",
+  "type": "module",
+  "scripts": {
+    "prepare-content": "node tools/prepare-docs.mjs",
+    "docs:dev": "npm run prepare-content && vitepress dev docs",
+    "docs:build": "npm run prepare-content && vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "docx": "node tools/build-docx.cjs"
+  },
+  "devDependencies": {
+    "docx": "^9.7.2",
+    "markdown-it-container": "^4.0.0",
+    "vitepress": "^1.6.4"
+  }
+}
