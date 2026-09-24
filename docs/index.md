@@ -5,9 +5,6 @@ hero:
   name: "Cẩm nang phỏng vấn"
   text: "Java Backend"
   tagline: Từ nền tảng Fresher đến lập trình viên 2–4 năm kinh nghiệm — học gì, học sâu tới đâu, người phỏng vấn thực sự muốn nghe gì.
-  image:
-    src: /logo.svg
-    alt: Java Backend Interview Handbook
   actions:
     - theme: brand
       text: Bắt đầu ôn
