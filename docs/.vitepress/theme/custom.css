@@ -1,0 +1,195 @@
+/* Brand palette — same navy tone as the Word version */
+:root {
+  --vp-c-brand-1: #2e75b6;
+  --vp-c-brand-2: #1f3864;
+  --vp-c-brand-3: #1a2f52;
+  --vp-c-brand-soft: rgba(46, 117, 182, 0.14);
+
+  /* Full-width layout: by default VitePress caps the layout at 1440px and centers it,
+     pushing the sidebar/outline toward the middle on large screens. Setting it to 100vw makes
+     the (100vw - max-width) / 2 calculations in VPNavBar/VPSidebar/VPContent evaluate to 0. */
+  --vp-layout-max-width: 100vw;
+  --vp-sidebar-width: 300px;
+}
+/* Home page keeps the centered layout so the navbar lines up with the hero */
+html:has(.VPHome) {
+  --vp-layout-max-width: 1440px;
+}
+:root {
+  --jih-recall-border: #0f6b6b;
+  --jih-recall-bg: #e6f4f3;
+  --jih-recall-title: #0b5454;
+}
+.dark {
+  --jih-recall-border: #3fb2a8;
+  --jih-recall-bg: rgba(63, 178, 168, 0.12);
+  --jih-recall-title: #7fd6ce;
+}
+.dark {
+  --vp-c-brand-1: #6ca8e0;
+  --vp-c-brand-2: #8fc0ea;
+  --vp-c-brand-3: #4c8ec7;
+  --vp-c-brand-soft: rgba(108, 168, 224, 0.16);
+}
+
+/* Self-check toggle button in the navbar */
+.quiz-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 10px;
+  margin-left: 8px;
+  border-radius: 999px;
+  border: 1px solid var(--vp-c-divider);
+  background: var(--vp-c-bg-soft);
+  color: var(--vp-c-text-2);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+}
+.quiz-toggle:hover {
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
+}
+.quiz-toggle-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--vp-c-divider);
+  transition: background 0.2s;
+}
+.quiz-toggle-dot.on {
+  background: var(--vp-c-brand-1);
+}
+html.quiz-mode .quiz-toggle {
+  border-color: var(--vp-c-brand-1);
+  color: var(--vp-c-brand-1);
+}
+@media (max-width: 767px) {
+  .quiz-toggle-label { display: none; }
+  .quiz-toggle { padding: 0 8px; }
+}
+
+/* Sample answer block (::: answer) */
+.qa-answer {
+  border-left: 3px solid var(--vp-c-brand-1);
+  background: var(--vp-c-bg-soft);
+  border-radius: 0 8px 8px 0;
+  padding: 4px 16px;
+  margin: 12px 0 20px;
+}
+.qa-answer :first-child { margin-top: 12px; }
+.qa-answer :last-child { margin-bottom: 12px; }
+
+/* "Show answer" button, only shown when self-check mode is on */
+.qa-reveal {
+  display: none;
+  margin: 8px 0 4px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px dashed var(--vp-c-brand-1);
+  background: transparent;
+  color: var(--vp-c-brand-1);
+  font-size: 14px;
+  cursor: pointer;
+}
+.qa-reveal:hover { background: var(--vp-c-brand-soft); }
+
+html.quiz-mode .qa-answer:not(.qa-revealed) {
+  display: none;
+}
+html.quiz-mode .qa-reveal {
+  display: inline-block;
+}
+/* button sits right before .qa-answer in the DOM -> hide it once the next answer is revealed */
+.qa-reveal:has(+ .qa-answer.qa-revealed) {
+  display: none;
+}
+
+/* Review checklist */
+label.ck {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 6px 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  line-height: 1.6;
+}
+label.ck:hover { background: var(--vp-c-bg-soft); }
+label.ck input.ck-box {
+  margin-top: 5px;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--vp-c-brand-1);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+label.ck span { flex: 1; }
+label.ck:has(input:checked) span {
+  color: var(--vp-c-text-3);
+  text-decoration: line-through;
+  text-decoration-color: var(--vp-c-divider);
+}
+
+.ck-progress {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0;
+  padding: 10px 14px;
+  border-radius: 8px;
+  background: var(--vp-c-brand-soft);
+}
+.ck-progress-track {
+  flex: 1;
+  height: 8px;
+  border-radius: 999px;
+  background: var(--vp-c-bg-alt);
+  overflow: hidden;
+}
+.ck-progress-fill {
+  height: 100%;
+  background: var(--vp-c-brand-1);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+.ck-progress-text {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--vp-c-brand-2);
+  white-space: nowrap;
+}
+
+/* Home page: extra accent for the hero */
+.VPHero .name { color: var(--vp-c-brand-2); }
+
+/* Wider text column (default 688px) so long code lines with comments get cut off less.
+   Still shrinks to the available width on small screens. !important is needed because VitePress's
+   scoped CSS (.VPDoc.has-aside .content-container[data-v-*]) has higher specificity than our selector. */
+.VPDoc.has-aside .content-container {
+  max-width: 920px !important;
+}
+
+/* Wider right-hand outline (default 224px) so question headings get truncated less */
+.VPDoc.has-aside .aside {
+  max-width: 300px;
+}
+.VPDoc.has-aside .aside-container,
+.VPDoc.has-aside .aside-curtain {
+  width: 268px;
+}
+
+/* "Recall" callout: reminds the reader of prerequisite knowledge from earlier sections */
+.vp-doc .custom-block.recall {
+  border: 1px solid var(--jih-recall-border);
+  border-left-width: 4px;
+  background-color: var(--jih-recall-bg);
+  color: var(--vp-c-text-1);
+}
+.vp-doc .custom-block.recall .custom-block-title {
+  color: var(--jih-recall-title);
+}
