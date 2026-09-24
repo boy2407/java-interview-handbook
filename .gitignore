@@ -1,0 +1,12 @@
+node_modules/
+
+# Pages under docs/ are generated from content/*.md by tools/prepare-docs.mjs
+# (run `npm run prepare-content`). Only docs/index.md is hand-written.
+/docs/*.md
+!/docs/index.md
+/docs/.vitepress/nav-data.json
+/docs/.vitepress/cache/
+/docs/.vitepress/dist/
+
+.DS_Store
+*.log
