@@ -38,7 +38,7 @@ Hai cặp khái niệm này hay bị trộn vào nhau, nhưng chúng trả lời
 - **Static hay dynamic typing** trả lời câu "kiểu được kiểm tra *khi nào*?". Static: compiler kiểm tra kiểu trước khi chương trình chạy, sai kiểu thì không biên dịch được. Dynamic: biến không có kiểu cố định, kiểu chỉ được kiểm tra lúc chạy, khi dòng code đó thực sự được thực thi.
 - **Strong hay weak typing** trả lời câu "khi hai kiểu không liên quan gặp nhau, ngôn ngữ có *tự ép kiểu ngầm* để chạy tiếp không?". Strong: không tự ép, báo lỗi (lúc biên dịch hoặc lúc chạy). Weak: tự chuyển đổi ngầm theo luật riêng, chạy tiếp và cho ra một kết quả đôi khi khó đoán.
 
-Vì hai trục độc lập, ta có đủ bốn tổ hợp. Mỗi ô dưới đây kèm một dòng code minh họa:
+Vì hai trục độc lập, ta có đủ bốn tổ hợp. Mỗi ô dưới đây kèm một dòng code minh họa. C, Python và JavaScript chỉ được mượn để bạn thấy đủ bốn tổ hợp; câu hỏi phỏng vấn thực tế luôn xoay quanh Java, tức ô đầu tiên:
 
 | | Strong (không tự ép kiểu ngầm) | Weak (tự ép kiểu ngầm) |
 |---|---|---|
@@ -78,9 +78,9 @@ Cả hai: `javac` biên dịch sang bytecode, JVM thông dịch và JIT biên d�
 > [!TRAP]
 > "Có `var` thì Java thành dynamic typing." Sai: `var` chỉ là suy luận kiểu lúc biên dịch, biến vẫn có kiểu cố định.
 
-### Câu hỏi (Hiểu sâu): Python là static hay dynamic, strong hay weak? Vì sao không mâu thuẫn?
+### Câu hỏi (Hiểu sâu): Java là static hay dynamic, strong hay weak? `ClassCastException` xảy ra lúc chạy có làm Java thành dynamic không?
 
-**Python là dynamic và strong; hai tính chất này không mâu thuẫn vì chúng thuộc hai trục khác nhau.** Dynamic vì biến Python không khai báo kiểu, lỗi kiểu chỉ lộ ra khi dòng code được chạy. Strong vì khi gặp `"5" + 5`, Python ném `TypeError` thay vì tự đổi một bên. Người nhầm "strong = kiểm tra lúc biên dịch" sẽ kết luận sai rằng Python là weak.
+**Java là static và strong; hai tính chất này không mâu thuẫn vì chúng thuộc hai trục khác nhau.** Static vì mỗi biến, tham số và giá trị trả về có kiểu cố định, compiler kiểm tra trước khi chạy (`int x = "5";` không biên dịch được). Strong vì Java không tự đổi giữa các kiểu không liên quan (không có chuyện `String` tự biến thành số). `ClassCastException` không biến Java thành dynamic: compiler vẫn bắt phần lớn lỗi kiểu, còn phép ép kiểu tham chiếu là chỗ lập trình viên tự nói "tôi chắc object này là kiểu đó", nên JVM phải kiểm tra thêm lúc chạy để giữ tính strong. Tương tự, `var` chỉ nhờ compiler suy luận kiểu lúc biên dịch, biến vẫn có kiểu cố định.
 
 ### Câu hỏi (Đọc code): Dòng nào trong đoạn dưới đây không biên dịch được, dòng nào biên dịch được nhưng lỗi khi chạy?
 
@@ -2051,7 +2051,7 @@ public class SecondLargestEdge {
 - [ ] Chứng minh pass by value; deep copy bằng copy constructor; `transient`, `serialVersionUID`.
 - [ ] Dùng lambda, method reference, `filter`/`map`/`collect`, Optional không gọi `get()` bừa.
 - [ ] Tự viết được 6 bài kinh điển và nói độ phức tạp từng bài.
-- [ ] Vẽ bảng 2x2 static/dynamic và strong/weak với ví dụ Java, C, Python, JavaScript.
+- [ ] Vẽ bảng 2x2 static/dynamic và strong/weak, và giải thích vì sao Java thuộc ô static + strong (kể cả khi có `ClassCastException` hay `var`).
 - [ ] Vẽ sơ đồ `int` trên Stack và `Integer` trên Heap; viết lại code sau khi compiler thêm `Integer.valueOf`/`intValue()`; giải thích vì sao `Long sum += i` trong vòng lặp chậm.
 - [ ] Liệt kê các trường hợp kích hoạt và không kích hoạt khởi tạo class; đoán đúng output khi đọc hằng `static final` compile-time.
 - [ ] Đọc được lỗi `constructor X in class X cannot be applied to given types` và sửa bằng `super(...)`.
